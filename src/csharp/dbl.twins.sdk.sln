@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbl.twins.sdk", "dbl.twins.sdk.csproj", "{F8893ECD-0D0D-47A6-BF12-F3051991BD0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbl.twins.sdk", "dbl.twins.sdk\dbl.twins.sdk.csproj", "{F8893ECD-0D0D-47A6-BF12-F3051991BD0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbl.twins.test", "..\dbl.twins.test\dbl.twins.test.csproj", "{D3EDD427-96DE-48C6-8A03-77CB1ECF8F13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbl.twins.test", "dbl.twins.test\dbl.twins.test.csproj", "{D3EDD427-96DE-48C6-8A03-77CB1ECF8F13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
