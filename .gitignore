@@ -9,3 +9,7 @@
 /src/csharp/dbl.twins.test/obj
 /src/csharp/.vs/dbl.twins.sdk/v17
 /src/csharp/.vs/dbl.twins.sdk/FileContentIndex
+/.vs
+/src/csharp/.vs
+/tests/dbl.twins.test/bin/Debug/net6.0
+/tests/dbl.twins.test/obj
