@@ -13,3 +13,5 @@
 /src/csharp/.vs
 /tests/dbl.twins.test/bin/Debug/net6.0
 /tests/dbl.twins.test/obj
+/tests/csharp/dbl.twins.test/bin/Debug/net6.0
+/tests/csharp/dbl.twins.test/obj
