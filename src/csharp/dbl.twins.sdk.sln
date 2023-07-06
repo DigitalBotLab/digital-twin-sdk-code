@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbl.twins.sdk", "dbl.twins.sdk\dbl.twins.sdk.csproj", "{F8893ECD-0D0D-47A6-BF12-F3051991BD0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.twins.sdk", "dbl.twins.sdk\dbl.twins.sdk.csproj", "{F8893ECD-0D0D-47A6-BF12-F3051991BD0F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.twins.test", "..\..\tests\csharp\dbl.twins.test\dbl.twins.test.csproj", "{34500CB9-5EFC-473D-BF28-531B5E4890C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +16,10 @@ Global
 		{F8893ECD-0D0D-47A6-BF12-F3051991BD0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8893ECD-0D0D-47A6-BF12-F3051991BD0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8893ECD-0D0D-47A6-BF12-F3051991BD0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34500CB9-5EFC-473D-BF28-531B5E4890C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34500CB9-5EFC-473D-BF28-531B5E4890C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34500CB9-5EFC-473D-BF28-531B5E4890C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34500CB9-5EFC-473D-BF28-531B5E4890C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
