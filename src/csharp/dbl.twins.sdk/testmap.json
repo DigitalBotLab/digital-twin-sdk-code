@@ -1,0 +1,326 @@
+[
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-1",
+    "paths": [ "/World/First/Lights/Rm_01" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-2",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_02" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-3",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_03" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-4",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_04" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-5",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_05" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-6",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_06" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-7",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_07" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-8",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_08" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-9",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_09" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-10",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_10" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-11",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_11" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-12",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_12" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat1-13",
+    "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_13" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-1",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_01" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-2",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_02" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-3",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_03" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-4",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_04" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-5",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_05" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-6",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_06" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-7",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_07" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-8",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_08" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-9",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_09" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-10",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_10" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-11",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_11" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-12",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_12" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat2-13",
+    "paths": [ "/Root/Rooms_Modular_2_3/First/Lights/Rm_13" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-1",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_01" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-2",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_02" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-3",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_03" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-4",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_04" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-5",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_05" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-6",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_06" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-7",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_07" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-8",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_08" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-9",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_09" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-10",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_10" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-11",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_11" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-12",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_12" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat3-13",
+    "paths": [ "/Root/Rooms_Modular_2_3/Second/Lights/Rm_13" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-1",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_01" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-2",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_02" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-3",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_03" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-4",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_04" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-5",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_05" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-6",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_06" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-7",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_07" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-8",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_08" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-9",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_09" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-10",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_10" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-11",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_11" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-12",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_12" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat5-13",
+    "paths": [ "/Root/Rooms_Modular_2_3/Fourth/Lights/Rm_13" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-1",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_01" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-2",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_02" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-3",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_03" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-4",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_04" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-5",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_05" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-6",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_06" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-7",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_07" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-8",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_08" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-9",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_09" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-10",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_10" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-11",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_11" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-12",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_12" ]
+  },
+  {
+    "model": "thermostat",
+    "dtid": "thermostat4-13",
+    "paths": [ "/Root/Rooms_Modular_2_3/Third/Lights/Rm_13" ]
+  }

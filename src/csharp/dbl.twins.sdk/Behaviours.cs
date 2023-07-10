@@ -11,52 +11,55 @@ namespace dbl.twins.sdk
     /// <summary>
     /// Applies Physics to the target element based on changes in telemetry data
     /// </summary>
-    class PhysicsBehaviour : IBehaviour
+    public abstract class PhysicsBehaviour : IBehaviour
     {
-        public void TelemetryUpdate() { SetPhysics(); }
+        public virtual void TelemetryUpdate(object updated) 
+        {
+            //Telemetry data has changed, apply physics
+            SetPhysics(updated);
+        }
 
-        private void SetPhysics() { }
+        private void SetPhysics(object updated) { }
 
     }
 
     /// <summary>
-    /// Can change position of the target element based on changes in telemetry data
+    /// Change position of the target element based on changes in telemetry data
     /// </summary>
-    class PositionBehaviour : IBehaviour
+    public abstract class PositionBehaviour : IBehaviour
     {
-        public void TelemetryUpdate() {
-
+        public virtual void TelemetryUpdate(object updated)
+        {
             //Telemetry data has changed, update the position
-            SetPosition(); 
+            SetPosition(updated); 
         }
-        private void SetPosition() { }
+        public abstract void SetPosition(object updated);
 
     }
 
     /// <summary>
-    /// Can change the value of properties on the target element based on changes in telemetry data
+    /// Trigger an animation based on changes in telemetry data
     /// </summary>
-    class PropertyBehaviour : IBehaviour, INotifyPropertyChanged
+    public abstract class AnimationBehaviour : IBehaviour
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public virtual void TelemetryUpdate(object updated)
+        {
+            //Telemetry data has changed, update the position
+            TriggerAnimation(updated);
+        }
+        public abstract void TriggerAnimation(object updated);
 
-        public string? PropertyName;
+    }
 
-        public string? PropertyValue;
+    /// <summary>
+    /// Change the value of properties on the target element based on changes in telemetry data
+    /// </summary>
+    public abstract class PropertyBehaviour : IBehaviour
+    {
 
-        public string? PropertyType;
-
-        public void TelemetryUpdate() { 
+        public virtual void TelemetryUpdate(object updated) { 
             
-            //Telemetry data has changed, update the property
-            SetProperty(); 
         }
-        private void SetProperty() {
-            if (PropertyChanged != null) {
-                PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
-            }
-        }
-
 
     }
 

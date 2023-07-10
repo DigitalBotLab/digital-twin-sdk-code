@@ -23,5 +23,17 @@ namespace dbl.twins.sdk
     //              Building1/Floor1/Room1/Light2, TempColorBehavior(settings)
     //    
     //
-
+    // Json map
+    //[
+    //    {
+    //        "model": "thermostat",
+    //        "dtid": "thermostat1-1",
+    //        "paths": [ "/World/First/Lights/Rm_01" ]
+    //},
+    //    {
+    //    "model": "thermostat",
+    //        "dtid": "thermostat1-2",
+    //        "paths": [ "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_02" ]
+    //    },
+    //]
 }
