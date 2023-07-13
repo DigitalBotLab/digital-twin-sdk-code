@@ -19,3 +19,5 @@
 /src/csharp/dbl.twins.consumer/obj
 /src/csharp/dbl.twins.sdk/bin/Debug/net7.0
 /tests/csharp/dbl.twins.test/bin/Debug/net7.0
+/src/csharp/dbl.twins.testclient/bin/Debug/net7.0
+/src/csharp/dbl.twins.testclient/obj

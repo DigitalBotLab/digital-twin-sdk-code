@@ -1,5 +1,5 @@
-using dbl.twins.consumer;
 using dbl.twins.sdk;
+using dbl.twins.consumer;
 
 namespace dbl.twins.test
 {
@@ -9,8 +9,10 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourCold()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(60.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key:"Temperature",value: 60.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 0);
             Assert.IsTrue(ctb.TempColor.G == 0);
@@ -22,8 +24,10 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourTooCold()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(59.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: 59.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 0);
             Assert.IsTrue(ctb.TempColor.G == 0);
@@ -35,9 +39,12 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourFreezingCold()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(32.0);
-            
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: 32.0);
+            ctb.TelemetryUpdate(dict);
+
+
             Assert.IsTrue(ctb.TempColor.R == 0);
             Assert.IsTrue(ctb.TempColor.G == 0);
             Assert.IsTrue(ctb.TempColor.B == 255);
@@ -49,21 +56,24 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourIceAge()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(-32.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: -32.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 0);
             Assert.IsTrue(ctb.TempColor.G == 0);
             Assert.IsTrue(ctb.TempColor.B == 255);
             Assert.IsTrue(ctb.TempColor.A == 1);
-
         }
 
         [TestMethod]
         public void TestColorTempBehaviourNormal()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(75.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: 75.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 0);
             Assert.IsTrue(ctb.TempColor.G == 255);
@@ -74,8 +84,10 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourHotter()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(85.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: 85.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 255);
             Assert.IsTrue(ctb.TempColor.G == 170);
@@ -86,8 +98,10 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourAlmostHot()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(88.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: 88.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 255);
             Assert.IsTrue(ctb.TempColor.G == 68);
@@ -98,8 +112,10 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourHot()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(90.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: 90.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 255);
             Assert.IsTrue(ctb.TempColor.G == 0);
@@ -110,8 +126,10 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourBoiling()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(212.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: 212.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 255);
             Assert.IsTrue(ctb.TempColor.G == 0);
@@ -122,8 +140,10 @@ namespace dbl.twins.test
         [TestMethod]
         public void TestColorTempBehaviourTooHot()
         {
-            ColorTempBehaviour ctb = new ColorTempBehaviour();
-            ctb.TelemetryUpdate(1000.0);
+            ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
+            var dict = new Dictionary<string, object>();
+            dict.Add(key: "Temperature", value: 1000.0);
+            ctb.TelemetryUpdate(dict);
 
             Assert.IsTrue(ctb.TempColor.R == 255);
             Assert.IsTrue(ctb.TempColor.G == 0);

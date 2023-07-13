@@ -11,16 +11,8 @@ namespace dbl.twins.sdk
     {
         public string Model { get; set; }
         public string Dtid { get; set; }
-        public List<string> Paths { get; set; }
+        public List<IBehaviour> Behaviours { get; set; }
     }
 
-    public class TwinMap : List<DigitalTwin>
-    {
-        public TwinMap()
-        {
-
-        }
-
-          
-    }
+    public class TwinMap : List<DigitalTwin> { }
 }

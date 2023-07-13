@@ -11,8 +11,10 @@ using Azure.Messaging.EventHubs.Producer;
 
 namespace dbl.twins.sdk
 {
-
-    internal class TwinClient
+    /// <summary>
+    /// Client that connects to Event Hub to recieve telmetry events
+    /// </summary>
+    public class TwinClient
     {
         private string _connectionString;
         private string _eventHubName;
@@ -26,11 +28,7 @@ namespace dbl.twins.sdk
         public async Task ConnectHub()
         {
             var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
-
-            var consumer = new EventHubConsumerClient(
-                consumerGroup,
-                _connectionString,
-                _eventHubName);
+            var consumer = new EventHubConsumerClient(consumerGroup,_connectionString,_eventHubName);
 
             try
             {
@@ -38,14 +36,21 @@ namespace dbl.twins.sdk
                 cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
 
                 int eventsRead = 0;
-                int maximumEvents = 3;
+                int maximumEvents = 30000;
+                int count = 0;
 
                 await foreach (PartitionEvent partitionEvent in consumer.ReadEventsAsync(cancellationSource.Token))
                 {
+                    count++;
                     string readFromPartition = partitionEvent.Partition.PartitionId;
                     byte[] eventBodyBytes = partitionEvent.Data.EventBody.ToArray();
+                    string eventBodyString = Encoding.UTF8.GetString(eventBodyBytes);
+                    string subject = "";
+                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:subject")) {
+                        subject = partitionEvent.Data.Properties["cloudEvents:subject"].ToString();
+                    }
 
-                    Debug.WriteLine($"Read event of length {eventBodyBytes.Length} from {readFromPartition}");
+                    Console.WriteLine($"{count} - Read event {subject} : {eventBodyString}");
                     eventsRead++;
 
                     if (eventsRead >= maximumEvents)

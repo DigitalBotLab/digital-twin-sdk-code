@@ -12,7 +12,7 @@ namespace dbl.twins.sdk
     /// Defines a custom behaviour
     /// </summary>
     public interface IBehaviour {
-        abstract void TelemetryUpdate(object updated);
+        abstract void TelemetryUpdate(Dictionary<string, object> keyValues);
 
     }
 

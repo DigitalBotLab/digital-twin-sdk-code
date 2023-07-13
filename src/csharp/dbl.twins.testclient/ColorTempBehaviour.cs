@@ -1,22 +1,32 @@
-﻿namespace dbl.twins.consumer
+﻿using dbl.twins.sdk;
+using System.Drawing;
+
+namespace dbl.twins.consumer
 {
-    using dbl.twins.sdk;
-    using System.Drawing;
 
     /// <summary>
     /// Implements a custom property behaviour to change the color of lights based on temperature data
     /// </summary>
     public class ColorTempBehaviour : PropertyBehaviour
     {
+        string pathToObject ="";
+        string telemetryProperty = "";
+
         Color tempColor;
 
         public Color TempColor { get => tempColor; set => tempColor=value; }
 
-        public override void TelemetryUpdate(object updated)
+        public ColorTempBehaviour(string pathToObject, string telemetryProperty)
         {
-            TempColor = GetColorForTemp((double)updated);
+            this.pathToObject=pathToObject;
+            this.telemetryProperty=telemetryProperty;
         }
 
+        public override void TelemetryUpdate(Dictionary<string, object> keyValues)
+        {
+            TempColor = GetColorForTemp((double)keyValues[telemetryProperty]);
+
+        }
 
         private Color GetColorForTemp(double temp)
         {

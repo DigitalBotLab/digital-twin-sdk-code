@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.twins.sdk", "dbl.twins.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.twins.test", "..\..\tests\csharp\dbl.twins.test\dbl.twins.test.csproj", "{34500CB9-5EFC-473D-BF28-531B5E4890C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbl.twins.consumer", "dbl.twins.consumer\dbl.twins.consumer.csproj", "{E8168705-E752-4184-8347-B50B012320DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbl.twins.testclient", "dbl.twins.testclient\dbl.twins.testclient.csproj", "{3B747066-F2F9-4334-A516-CD7FDA3A3C3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +22,10 @@ Global
 		{34500CB9-5EFC-473D-BF28-531B5E4890C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34500CB9-5EFC-473D-BF28-531B5E4890C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34500CB9-5EFC-473D-BF28-531B5E4890C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8168705-E752-4184-8347-B50B012320DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8168705-E752-4184-8347-B50B012320DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8168705-E752-4184-8347-B50B012320DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8168705-E752-4184-8347-B50B012320DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B747066-F2F9-4334-A516-CD7FDA3A3C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B747066-F2F9-4334-A516-CD7FDA3A3C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B747066-F2F9-4334-A516-CD7FDA3A3C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B747066-F2F9-4334-A516-CD7FDA3A3C3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

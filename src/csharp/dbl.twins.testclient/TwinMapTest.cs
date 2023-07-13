@@ -7,24 +7,32 @@ using System.Threading.Tasks;
 
 namespace dbl.twins.consumer
 {
-    internal class TwinClient
+    internal class TwinMapTest
     {
-        public TwinClient()
+        public TwinMapTest()
         {
-            // Create a Twin map
 
+            // Create a Twin map
             TwinMap map = new TwinMap() {
                 new DigitalTwin
                 {
                     Model = "thermostat",
                     Dtid = "thermostat1-1",
-                    Paths = new List<string> { "/World/First/Lights/Rm_01" }
+                    Behaviours = new List<IBehaviour>()
+                    {
+                        new ColorTempBehaviour("/World/First/Lights/Rm_01", "Temperature"),
+                        new ColorTempBehaviour("/World/First/Lights/Rm_02", "Temperature"),
+                    } 
                 },
                 new DigitalTwin
                 {
                     Model = "thermostat",
                     Dtid = "thermostat1-2",
-                    Paths = new List<string> { "/Root/Rooms_Modular_2_3/Ground/Lights/Rm_02" }
+                    Behaviours = new List<IBehaviour>()
+                    {
+                        new ColorTempBehaviour("/World/First/Lights/Rm_01", "Temperature"),
+                        new ColorTempBehaviour("/World/First/Lights/Rm_02", "Temperature"),
+                    }
                 }
             };
 
@@ -35,9 +43,9 @@ namespace dbl.twins.consumer
                 Console.WriteLine("DTID: " + twin.Dtid);
 
                 Console.WriteLine("Paths:");
-                foreach (var path in twin.Paths)
+                foreach (var behaviour in twin.Behaviours)
                 {
-                    Console.WriteLine("- " + path);
+                    Console.WriteLine("- " + behaviour.ToString());
                 }
 
                 Console.WriteLine();

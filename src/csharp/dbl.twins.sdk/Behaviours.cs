@@ -13,10 +13,10 @@ namespace dbl.twins.sdk
     /// </summary>
     public abstract class PhysicsBehaviour : IBehaviour
     {
-        public virtual void TelemetryUpdate(object updated) 
+        public virtual void TelemetryUpdate(Dictionary<string, object> keyValues)
         {
             //Telemetry data has changed, apply physics
-            SetPhysics(updated);
+            SetPhysics(new object());
         }
 
         private void SetPhysics(object updated) { }
@@ -28,10 +28,10 @@ namespace dbl.twins.sdk
     /// </summary>
     public abstract class PositionBehaviour : IBehaviour
     {
-        public virtual void TelemetryUpdate(object updated)
+        public virtual void TelemetryUpdate(Dictionary<string, object> keyValues)
         {
             //Telemetry data has changed, update the position
-            SetPosition(updated); 
+            SetPosition(new object()); 
         }
         public abstract void SetPosition(object updated);
 
@@ -42,10 +42,10 @@ namespace dbl.twins.sdk
     /// </summary>
     public abstract class AnimationBehaviour : IBehaviour
     {
-        public virtual void TelemetryUpdate(object updated)
+        public virtual void TelemetryUpdate(Dictionary<string, object> keyValues)
         {
             //Telemetry data has changed, update the position
-            TriggerAnimation(updated);
+            TriggerAnimation(new object());
         }
         public abstract void TriggerAnimation(object updated);
 
@@ -57,7 +57,7 @@ namespace dbl.twins.sdk
     public abstract class PropertyBehaviour : IBehaviour
     {
 
-        public virtual void TelemetryUpdate(object updated) { 
+        public virtual void TelemetryUpdate(Dictionary<string, object> keyValues) { 
             
         }
 
