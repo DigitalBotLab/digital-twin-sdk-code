@@ -10,7 +10,7 @@ using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Producer;
 
-namespace dbl.twins.sdk
+namespace dbl.twins.sdk.std
 {
     
     public class TelemetryEventArgs: EventArgs
@@ -34,27 +34,31 @@ namespace dbl.twins.sdk
         private string _eventHubName;
         public event EventHandler<KeyValuePair<string, string>> TelemetryUpdate;
 
-        public TwinClient(string eventHubConnectionString, string eventHubName)
+        public TwinClient(string eventHubConnectionString)
         {
             _connectionString = eventHubConnectionString;
-            _eventHubName = eventHubName;
+            //Endpoint=sb://bldg-hubns-6uad.servicebus.windows.net/;SharedAccessKeyName=listener;SharedAccessKey=lEjVTywrizKSmlPXM6ZOeqlLDF+bw75Dp+AEhEVfOtM=;EntityPath=bldg-hub-6uad
+            var parts = _connectionString.Split(new char[] { ';' });
+            _eventHubName = parts[0];
+
         }
 
         public async Task ConnectHub()
         {
             var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
-            var consumer = new EventHubConsumerClient(consumerGroup,_connectionString);
+
+            var consumer = new EventHubConsumerClient(consumerGroup,_connectionString,_eventHubName);
 
             try
             {
-                //using CancellationTokenSource cancellationSource = new CancellationTokenSource();
-                //cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
+                using CancellationTokenSource cancellationSource = new CancellationTokenSource();
+                cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
 
                 int eventsRead = 0;
                 int maximumEvents = 30000;
                 int count = 0;
 
-                await foreach (PartitionEvent partitionEvent in consumer.ReadEventsAsync())
+                await foreach (PartitionEvent partitionEvent in consumer.ReadEventsAsync(cancellationSource.Token))
                 {
                     count++;
                     string readFromPartition = partitionEvent.Partition.PartitionId;

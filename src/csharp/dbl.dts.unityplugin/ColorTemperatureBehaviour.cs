@@ -1,30 +1,56 @@
-﻿using dbl.twins.sdk;
-using System.Drawing;
+﻿
+using dbl.twins.sdk.std;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace dbl.twins.consumer
+
+namespace dbl.dts.unityplugin
 {
 
-    /// <summary>
-    /// Implements a custom property behaviour to change the color of lights based on temperature data
-    /// </summary>
-    public class ColorTempBehaviour : PropertyBehaviour
+    //Event System! - OBSERVER
+    public class LightColorTemperatureBehaviour : MonoBehaviour, IBehaviour
     {
-        string pathToObject ="";
-        string telemetryProperty = "";
+        UnityEngine.Color tempColor;
+        public string mappedTwin;
+        public Light mappedLight;
 
-        Color tempColor;
 
-        public Color TempColor { get => tempColor; set => tempColor=value; }
-
-        public ColorTempBehaviour(string pathToObject, string telemetryProperty)
+        void Start()
         {
-            this.pathToObject=pathToObject;
-            this.telemetryProperty=telemetryProperty;
+            UnityDigitalTwinClient.instance.onDigitalTwinTelemetryUpdate +=Instance_onDigitalTwinTelemetryUpdate1;
         }
 
-        public override void TelemetryUpdate(KeyValuePair<string, string> keyValues)
+        private void Instance_onDigitalTwinTelemetryUpdate1(string arg1, string arg2)
         {
-            TempColor = GetColorForTemp(double.Parse(keyValues.Value));
+            TelemetryUpdate(new KeyValuePair<string, string>(arg1, arg2));
+        }
+
+        void Update()
+        {
+
+        }
+
+        public void TelemetryUpdate(KeyValuePair<string, string> keyValues)
+        {
+            //Telemetry Update received!
+            //Ignore it if its not for this mapped object
+            if (keyValues.Key == mappedTwin) 
+            {
+                tempColor = GetColorForTemp(double.Parse(keyValues.Value));
+
+                try
+                {
+                    if (tempColor != null)
+                    {
+                        mappedLight.color = tempColor;
+                    }
+                }
+                catch (NullReferenceException ex)
+                {
+                    Debug.Log("mappedLight was not set in the inspector");
+                }
+            }
         }
 
         private Color GetColorForTemp(double temp)
@@ -86,7 +112,7 @@ namespace dbl.twins.consumer
                 color_b = 0.0;
             }
 
-            return Color.FromArgb(1, (int)(255*color_r), (int)(255*color_g), (int)(255*color_b));
+            return new Color((int)(255*color_r), (int)(255*color_g), (int)(255*color_b));
         }
 
 

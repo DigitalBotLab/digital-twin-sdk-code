@@ -1,4 +1,5 @@
 ﻿using dbl.twins.sdk;
+using System.Net;
 
 namespace dbl.twins.testclient
 {
@@ -8,8 +9,7 @@ namespace dbl.twins.testclient
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            TwinClient client = new TwinClient("Endpoint=sb://bldg-hubns-6uad.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=WcB4E913CSmbtyJf7yJphWeIt5vc1Ex7C+AEhHZiW4k=", "bldg-hub-6uad");
+            TwinClient client = new TwinClient("Endpoint=sb://twd-twinns-r5wn.servicebus.windows.net/;SharedAccessKeyName=listenpolicy;SharedAccessKey=cjAnD4wBcR7rMi2slD1znRZBJK6ZW7e/K+AEhKXgp/g=;EntityPath=twd-twinhub-r5wn", "twd-twinhub-r5wn");
             Task task = client.ConnectHub();
             task.Wait();
             //Console.ReadLine();

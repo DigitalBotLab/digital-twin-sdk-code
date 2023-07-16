@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dbl.twins.sdk
+namespace dbl.twins.sdk.std
 {
 
     /// <summary>

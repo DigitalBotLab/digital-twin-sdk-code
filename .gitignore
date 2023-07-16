@@ -21,3 +21,10 @@
 /tests/csharp/dbl.twins.test/bin/Debug/net7.0
 /src/csharp/dbl.twins.testclient/bin/Debug/net7.0
 /src/csharp/dbl.twins.testclient/obj
+/src/csharp/dbl.twins.sdk.std/bin/Debug/netstandard2.1
+/src/csharp/dbl.twins.sdk.std/obj
+/src/csharp/dbl.dts.unityplugin/bin
+/src/csharp/dbl.dts.unityplugin/obj
+/src/csharp/dbl.twins.sdk.std/bin/Release/netstandard2.1
+/tests/csharp/dbl.twins.test/bin/Release/net7.0
+/src/csharp/dbl.dts.unityplugin/Properties/PublishProfiles
