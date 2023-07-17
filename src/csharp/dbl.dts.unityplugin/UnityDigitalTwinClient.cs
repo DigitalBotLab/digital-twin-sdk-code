@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using UnityEngine;
 
 namespace dbl.dts.unityplugin
@@ -69,7 +70,8 @@ namespace dbl.dts.unityplugin
 
         async void Start()
         {
-            await client.ConnectHub();
+            //Read for 24 hours
+            await client.ConnectHub(new CancellationTokenSource(new TimeSpan(24, 0, 0)));
         }
 
 

@@ -7,7 +7,7 @@ namespace dbl.twins.consumer
     /// <summary>
     /// Implements a custom property behaviour to change the color of lights based on temperature data
     /// </summary>
-    public class ColorTempBehaviour : PropertyBehaviour
+    public class ColorTempBehaviour : IPropertyBehaviour
     {
         string pathToObject ="";
         string telemetryProperty = "";
@@ -24,7 +24,12 @@ namespace dbl.twins.consumer
 
         public override void TelemetryUpdate(KeyValuePair<string, string> keyValues)
         {
-            TempColor = GetColorForTemp(double.Parse(keyValues.Value));
+            SetProperty(double.Parse(keyValues.Value));
+        }
+
+        public override void SetProperty(object updated)
+        {
+            TempColor = GetColorForTemp((double)updated);
         }
 
         private Color GetColorForTemp(double temp)
@@ -88,7 +93,6 @@ namespace dbl.twins.consumer
 
             return Color.FromArgb(1, (int)(255*color_r), (int)(255*color_g), (int)(255*color_b));
         }
-
 
     }
 }

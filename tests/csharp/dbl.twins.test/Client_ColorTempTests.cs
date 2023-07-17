@@ -4,10 +4,10 @@ using dbl.twins.consumer;
 namespace dbl.twins.test
 {
     [TestClass]
-    public class ColorTempTests
+    public class Client_ColorTempTests
     {
         [TestMethod]
-        public void TestColorTempBehaviourCold()
+        public void Client_TestColorTempBehaviourCold()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "60.0");
@@ -21,7 +21,7 @@ namespace dbl.twins.test
         }
 
         [TestMethod]
-        public void TestColorTempBehaviourTooCold()
+        public void Client_TestColorTempBehaviourTooCold()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "59.0");
@@ -35,7 +35,7 @@ namespace dbl.twins.test
         }
 
         [TestMethod]
-        public void TestColorTempBehaviourFreezingCold()
+        public void Client_TestColorTempBehaviourFreezingCold()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "32.0");
@@ -51,7 +51,7 @@ namespace dbl.twins.test
 
 
         [TestMethod]
-        public void TestColorTempBehaviourIceAge()
+        public void Client_TestColorTempBehaviourIceAge()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "-32.0");
@@ -64,7 +64,7 @@ namespace dbl.twins.test
         }
 
         [TestMethod]
-        public void TestColorTempBehaviourNormal()
+        public void Client_TestColorTempBehaviourNormal()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "75.0");
@@ -77,7 +77,7 @@ namespace dbl.twins.test
         }
 
         [TestMethod]
-        public void TestColorTempBehaviourHotter()
+        public void Client_TestColorTempBehaviourHotter()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "85.0");
@@ -90,7 +90,7 @@ namespace dbl.twins.test
         }
 
         [TestMethod]
-        public void TestColorTempBehaviourAlmostHot()
+        public void Client_TestColorTempBehaviourAlmostHot()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "88.0");
@@ -103,7 +103,7 @@ namespace dbl.twins.test
         }
 
         [TestMethod]
-        public void TestColorTempBehaviourHot()
+        public void Client_TestColorTempBehaviourHot()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "90.0");
@@ -117,7 +117,7 @@ namespace dbl.twins.test
         }
 
         [TestMethod]
-        public void TestColorTempBehaviourBoiling()
+        public void Client_TestColorTempBehaviourBoiling()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "212.0");
@@ -131,7 +131,7 @@ namespace dbl.twins.test
         }
 
         [TestMethod]
-        public void TestColorTempBehaviourTooHot()
+        public void Client_TestColorTempBehaviourTooHot()
         {
             ColorTempBehaviour ctb = new ColorTempBehaviour("", "Temperature");
             var dict = new KeyValuePair<string, string>("Temperature", "1000.0");

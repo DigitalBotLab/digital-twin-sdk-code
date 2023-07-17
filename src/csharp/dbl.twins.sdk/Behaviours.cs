@@ -54,12 +54,14 @@ namespace dbl.twins.sdk
     /// <summary>
     /// Change the value of properties on the target element based on changes in telemetry data
     /// </summary>
-    public abstract class PropertyBehaviour : IBehaviour
+    public abstract class IPropertyBehaviour : IBehaviour
     {
 
         public virtual void TelemetryUpdate(KeyValuePair<string, string> keyValues) { 
             
         }
+
+        public abstract void SetProperty(object updated);
 
     }
 

@@ -11,7 +11,7 @@ namespace dbl.twins.sdk.std
     /// <summary>
     /// Applies Physics to the target element based on changes in telemetry data
     /// </summary>
-    public abstract class PhysicsBehaviour : IBehaviour
+    public interface IPhysicsBehaviour : IBehaviour
     {
         public virtual void TelemetryUpdate(KeyValuePair<string, string> keyValues)
         {
@@ -26,7 +26,7 @@ namespace dbl.twins.sdk.std
     /// <summary>
     /// Change position of the target element based on changes in telemetry data
     /// </summary>
-    public abstract class PositionBehaviour : IBehaviour
+    public interface IPositionBehaviour : IBehaviour
     {
         public virtual void TelemetryUpdate(KeyValuePair<string, string> keyValues)
         {
@@ -40,7 +40,7 @@ namespace dbl.twins.sdk.std
     /// <summary>
     /// Trigger an animation based on changes in telemetry data
     /// </summary>
-    public abstract class AnimationBehaviour : IBehaviour
+    public interface IAnimationBehaviour : IBehaviour
     {
         public virtual void TelemetryUpdate(KeyValuePair<string, string> keyValues)
         {
@@ -54,13 +54,14 @@ namespace dbl.twins.sdk.std
     /// <summary>
     /// Change the value of properties on the target element based on changes in telemetry data
     /// </summary>
-    public abstract class PropertyBehaviour : IBehaviour
+    public interface IPropertyBehaviour : IBehaviour
     {
 
         public virtual void TelemetryUpdate(KeyValuePair<string, string> keyValues) { 
             
         }
 
+        public abstract void SetProperty(object updated);
     }
 
 }

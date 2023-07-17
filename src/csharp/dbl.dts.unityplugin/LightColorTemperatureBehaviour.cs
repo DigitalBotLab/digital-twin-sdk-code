@@ -9,20 +9,30 @@ using static dbl.dts.unityplugin.UnityDigitalTwinClient;
 namespace dbl.dts.unityplugin
 {
 
-    //Event System! - OBSERVER
-    public class LightColorTemperatureBehaviour : MonoBehaviour, IBehaviour
+    /// <summary>
+    /// Custom property Behaviour IMplemented for Unity 
+    /// Event System! - OBSERVER! - Listens and responds to Telemetry updates
+    /// </summary>
+    public class LightColorTemperatureBehaviour : MonoBehaviour, IPropertyBehaviour
     {
-        UnityEngine.Color tempColor;
+        public UnityEngine.Color tempColor;
         public string mappedTwin;
         public Light mappedLight;
 
-
+        /// <summary>
+        /// Subscribe to Twin Telemetry updates
+        /// </summary>
         void Start()
         {
-            UnityDigitalTwinClient.instance.onDigitalTwinTelemetryUpdate +=Instance_onDigitalTwinTelemetryUpdate1;
+            UnityDigitalTwinClient.instance.onDigitalTwinTelemetryUpdate +=Instance_onDigitalTwinTelemetryUpdate;
         }
 
-        private void Instance_onDigitalTwinTelemetryUpdate1(string arg1, string arg2)
+        /// <summary>
+        /// Handle Telemetry changes
+        /// </summary>
+        /// <param name="arg1"></param>
+        /// <param name="arg2"></param>
+        private void Instance_onDigitalTwinTelemetryUpdate(string arg1, string arg2)
         {
             TelemetryUpdate(new KeyValuePair<string, string>(arg1, arg2));
         }
@@ -32,6 +42,27 @@ namespace dbl.dts.unityplugin
 
         }
 
+        /// <summary>
+        /// Unsubscribe from events
+        /// </summary>
+        void OnDestroy()
+        {
+            UnityDigitalTwinClient.instance.onDigitalTwinTelemetryUpdate -=Instance_onDigitalTwinTelemetryUpdate;
+        }
+
+        /// <summary>
+        /// Change the Property in Unity
+        /// </summary>
+        /// <param name="updated"></param>
+        public void SetProperty(object updated)
+        {
+            mappedLight.color = (Color)updated;
+        }
+
+        /// <summary>
+        /// Handle a Telemetry Event
+        /// </summary>
+        /// <param name="keyValues"></param>
         public void TelemetryUpdate(KeyValuePair<string, string> keyValues)
         {
             //Telemetry Update received!
@@ -48,7 +79,7 @@ namespace dbl.dts.unityplugin
                         {
                             Debug.Log("Setting Light " + mappedLight.name + " to " + tempColor.ToString());
                         }
-                        mappedLight.color = tempColor;
+                        SetProperty(tempColor);
                     }
                 }
                 catch (NullReferenceException ex)
@@ -58,6 +89,11 @@ namespace dbl.dts.unityplugin
             }
         }
 
+        /// <summary>
+        /// Custom Business Logic for this handler
+        /// </summary>
+        /// <param name="temp"></param>
+        /// <returns></returns>
         private Color GetColorForTemp(double temp)
         {
             // convert temperature to an RGB color
@@ -102,6 +138,6 @@ namespace dbl.dts.unityplugin
             }
         }
 
-
+       
     }
 }

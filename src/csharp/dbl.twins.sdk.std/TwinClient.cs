@@ -72,7 +72,12 @@ namespace dbl.twins.sdk.std
 
         }
 
-        public async Task ConnectHub()
+        /// <summary>
+        /// Connect and Read Events with a Cancellation Token Source
+        /// </summary>
+        /// <param name="cancellationSource"></param>
+        /// <returns></returns>
+        public async Task ConnectHub(CancellationTokenSource cancellationSource)
         {
             var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
             var consumer = new EventHubConsumerClient(consumerGroup, _connectionString);
@@ -80,8 +85,6 @@ namespace dbl.twins.sdk.std
             try
             {
                 OnConnected(true, "Connected");
-                using CancellationTokenSource cancellationSource = new CancellationTokenSource();
-                //cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
 
                 int eventsRead = 0;
                 int maximumEvents = 30000;
@@ -95,14 +98,15 @@ namespace dbl.twins.sdk.std
                     string eventBodyString = Encoding.UTF8.GetString(eventBodyBytes);
 
                     string subject = "";
-                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:subject")) {
+                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:subject"))
+                    {
                         subject = partitionEvent.Data.Properties["cloudEvents:subject"].ToString();
                         OnTelemetryUpdate(subject, eventBodyString);
                     }
 
                     Console.WriteLine($"{count} - Read event {subject} : {eventBodyString}");
 
-                    
+
                     eventsRead++;
 
                     if (eventsRead >= maximumEvents)
@@ -127,6 +131,62 @@ namespace dbl.twins.sdk.std
                 OnConnected(false, "Connection Closed");
                 await consumer.CloseAsync();
             }
+        }
+
+        /// <summary>
+        /// Connect and read until a max number of events
+        /// </summary>
+        /// <param name="maxEventCount"></param>
+        /// <returns></returns>
+        public async Task ConnectHub(int maxEventCount)
+        {
+            var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
+            var consumer = new EventHubConsumerClient(consumerGroup, _connectionString);
+
+            try
+            {
+                OnConnected(true, "Connected");
+
+                int eventsRead = 0;
+                int maximumEvents = 30000;
+                int count = 0;
+
+                await foreach (PartitionEvent partitionEvent in consumer.ReadEventsAsync())
+                {
+                    count++;
+                    string readFromPartition = partitionEvent.Partition.PartitionId;
+                    byte[] eventBodyBytes = partitionEvent.Data.EventBody.ToArray();
+                    string eventBodyString = Encoding.UTF8.GetString(eventBodyBytes);
+
+                    string subject = "";
+                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:subject"))
+                    {
+                        subject = partitionEvent.Data.Properties["cloudEvents:subject"].ToString();
+                        OnTelemetryUpdate(subject, eventBodyString);
+                    }
+
+                    Console.WriteLine($"{count} - Read event {subject} : {eventBodyString}");
+
+
+                    eventsRead++;
+
+                    if (eventsRead >= maximumEvents)
+                    {
+                        OnConnected(false, "Maximum Events reached");
+                        break;
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                OnConnected(false, ex.ToString());
+            }
+            finally
+            {
+                OnConnected(false, "Connection Closed");
+                await consumer.CloseAsync();
+            }
+
         }
 
         private void OnConnected(bool isConnected, string msg)
