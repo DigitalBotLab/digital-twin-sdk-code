@@ -3,6 +3,7 @@ using dbl.twins.sdk.std;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static dbl.dts.unityplugin.UnityDigitalTwinClient;
 
 
 namespace dbl.dts.unityplugin
@@ -43,7 +44,10 @@ namespace dbl.dts.unityplugin
                 {
                     if (tempColor != null)
                     {
-                        Debug.Log("Setting Light " + mappedLight.name + " to " + tempColor.ToString());
+                        if ((int)UnityDigitalTwinClient.instance.logLevel >= 0)
+                        {
+                            Debug.Log("Setting Light " + mappedLight.name + " to " + tempColor.ToString());
+                        }
                         mappedLight.color = tempColor;
                     }
                 }
@@ -73,54 +77,29 @@ namespace dbl.dts.unityplugin
             if (temp < 60.0)
             {
                 return Color.blue;
-                // anything below 60.0 is blue
-                //color_r = 0.0;
-                //color_g = 0.0;
-                //color_b = 1.0;
             }
             else if (temp < 67.5)
             {
                 // from 60.0 to 67.5, interpolate from blue to cyan
                 return Color.cyan;
-                //color_r = 0.0;
-                //color_g = 1.0 - (67.5 - temp) / 7.5;
-                //color_b = 1.0;
             }
             else if (temp < 75.0)
             {
                 // from 67.5 to 75.0, interpolate from cyan to green
                 return Color.green;
-                //color_r = 0.0;
-                //color_g = 1.0;
-                //color_b = (75.0 - temp) / 7.5;
             }
             else if (temp < 82.5)
             {
                 return Color.yellow;
-                // 75.0 to 82.5, interpolate from green to yellow
-                //color_r = 1.0 - (82.5 - temp) / 7.5;
-                //color_g = 1.0;
-                //color_b = 0.0;
             }
             else if (temp < 90)
             {
                 return Color.red;
-                // 82.5 to 90, interpolate from yellow to red
-                //color_r = 1.0;
-                //color_g = (90.0 - temp) / 7.5;
-                //color_b = 0.0;
             }
             else
             {
                 return Color.magenta;
-                // anything above 90.0 is red
-                //color_r = 1.0;
-                //color_g = 0.0;
-                //color_b = 0.0;
             }
-
-            //return  Color.blue;
-            // return new Color((int)(255*color_r), (int)(255*color_g), (int)(255*color_b), 1);
         }
 
 

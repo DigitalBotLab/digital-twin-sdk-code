@@ -29,10 +29,22 @@ namespace dbl.twins.sdk.std
         public PatchOperation[] patch { get; set; }
     }
 
+    public class ConnectionEventArgs : EventArgs
+    {
+        public bool isConnected;
+        public string message;
+
+        public ConnectionEventArgs(bool isConnected, string message)
+        {
+            this.isConnected = isConnected;
+            this.message = message;
+        }
+    }
+
     public class TelemetryEventArgs: EventArgs
     {
-        private string source;
-        private string telemetryData;
+        public string source;
+        public string telemetryData;
 
         public TelemetryEventArgs(string source, string telemetryData)
         {
@@ -41,6 +53,7 @@ namespace dbl.twins.sdk.std
         }
     }
 
+
     /// <summary>
     /// Client that connects to Event Hub to recieve telmetry events
     /// </summary>
@@ -48,12 +61,12 @@ namespace dbl.twins.sdk.std
     {
         private string _connectionString;
         private string _eventHubName;
-        public event EventHandler<KeyValuePair<string, string>> TelemetryUpdate;
+        public event EventHandler<TelemetryEventArgs> TelemetryUpdate;
+        public event EventHandler<ConnectionEventArgs> Connected;
 
         public TwinClient(string eventHubConnectionString)
         {
             _connectionString = eventHubConnectionString;
-            //Endpoint=sb://bldg-hubns-6uad.servicebus.windows.net/;SharedAccessKeyName=listener;SharedAccessKey=lEjVTywrizKSmlPXM6ZOeqlLDF+bw75Dp+AEhEVfOtM=;EntityPath=bldg-hub-6uad
             var parts = _connectionString.Split(new char[] { ';' });
             _eventHubName = parts[0];
 
@@ -66,6 +79,7 @@ namespace dbl.twins.sdk.std
 
             try
             {
+                OnConnected(true, "Connected");
                 using CancellationTokenSource cancellationSource = new CancellationTokenSource();
                 cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
 
@@ -87,45 +101,66 @@ namespace dbl.twins.sdk.std
                     }
 
                     Console.WriteLine($"{count} - Read event {subject} : {eventBodyString}");
+
+                    
                     eventsRead++;
 
                     if (eventsRead >= maximumEvents)
                     {
+                        OnConnected(false, "Maximum Events reached");
                         break;
                     }
                 }
             }
             catch (TaskCanceledException)
             {
+                OnConnected(false, "Cancelled");
                 // This is expected if the cancellation token is
                 // signaled.
             }
+            catch (System.Exception ex)
+            {
+                OnConnected(false, ex.ToString());
+            }
             finally
             {
+                OnConnected(false, "Connection Closed");
                 await consumer.CloseAsync();
+            }
+        }
+
+        private void OnConnected(bool isConnected, string msg)
+        {
+            EventHandler<ConnectionEventArgs> handler = Connected;
+            if (null != handler)
+            {
+                Connected(this, new ConnectionEventArgs(isConnected, msg));
             }
         }
 
         //Raise Telemetry Event
         private void OnTelemetryUpdate(string subject, string data)
         {
-            EventHandler<KeyValuePair<string, string>> handler = TelemetryUpdate;
+            EventHandler<TelemetryEventArgs> handler = TelemetryUpdate;
             if (null != handler)
             {
                 RootObject deserializedObject = JsonConvert.DeserializeObject<RootObject>(data);
 
-                Console.WriteLine("Model ID: " + deserializedObject.modelId);
-                Console.WriteLine("Patch:");
-
-                foreach (PatchOperation operation in deserializedObject.patch)
+                if (deserializedObject.modelId != null)
                 {
-                    //Console.WriteLine("Value: " + operation.value);
-                    //Console.WriteLine("Path: " + operation.path);
-                    //Console.WriteLine("Operation: " + operation.op);
 
-                    handler(this, new KeyValuePair<string, string>(subject, operation.value.ToString()));
+                    Console.WriteLine("Model ID: " + deserializedObject.modelId);
+                    Console.WriteLine("Patch:");
+
+                    foreach (PatchOperation operation in deserializedObject.patch)
+                    {
+                        //Console.WriteLine("Value: " + operation.value);
+                        //Console.WriteLine("Path: " + operation.path);
+                        //Console.WriteLine("Operation: " + operation.op);
+
+                        handler(this, new TelemetryEventArgs(subject, operation.value.ToString()));
+                    }
                 }
-
                 
             }
                 

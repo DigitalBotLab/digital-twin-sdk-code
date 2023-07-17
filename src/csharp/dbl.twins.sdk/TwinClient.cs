@@ -87,6 +87,10 @@ namespace dbl.twins.sdk
                 // This is expected if the cancellation token is
                 // signaled.
             }
+            catch ( System.Exception ex)
+            {
+
+            }
             finally
             {
                 await consumer.CloseAsync();
