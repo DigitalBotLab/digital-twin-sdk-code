@@ -60,7 +60,7 @@ namespace dbl.dts.unityplugin
                 //Parse the data, extract the Value
                 updateCounter++;
                 onDigitalTwinTelemetryUpdate(e.source, e.telemetryData);
-                if ((int)logLevel >= 0)
+                if ((int)logLevel < 1)
                 {
                     Debug.Log($"Telemetry Update {updateCounter}");
                 }

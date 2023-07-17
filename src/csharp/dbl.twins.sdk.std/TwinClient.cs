@@ -81,7 +81,7 @@ namespace dbl.twins.sdk.std
             {
                 OnConnected(true, "Connected");
                 using CancellationTokenSource cancellationSource = new CancellationTokenSource();
-                cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
+                //cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
 
                 int eventsRead = 0;
                 int maximumEvents = 30000;

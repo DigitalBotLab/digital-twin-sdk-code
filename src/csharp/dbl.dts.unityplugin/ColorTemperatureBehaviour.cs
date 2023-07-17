@@ -44,7 +44,7 @@ namespace dbl.dts.unityplugin
                 {
                     if (tempColor != null)
                     {
-                        if ((int)UnityDigitalTwinClient.instance.logLevel >= 0)
+                        if ((int)UnityDigitalTwinClient.instance.logLevel < 1)
                         {
                             Debug.Log("Setting Light " + mappedLight.name + " to " + tempColor.ToString());
                         }
