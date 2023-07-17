@@ -11,17 +11,16 @@ namespace dbl.dts.unityplugin
         //Event System! - SUBJECT
         public static UnityDigitalTwinClient instance;
 
-        private TwinClient client;
+        private static TwinClient client;
 
         //Endpoint=sb://tnd-twinns-bsta.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=p5wtMNMDI8F/YDsbKiPsrYr6IOReceuVz+AEhLvj5r4=
 
         public string eventHubConnString;
         public event Action<string, string> onDigitalTwinTelemetryUpdate;
 
-
-        public UnityDigitalTwinClient()
+        private void Awake()
         {
-
+            instance = this;
             try
             {
                 client = new TwinClient(eventHubConnString);
@@ -33,20 +32,17 @@ namespace dbl.dts.unityplugin
             }
         }
 
-        private void Awake()
+        async void Start()
         {
-            instance = this;
-        }
-
-        void Start()
-        {
-            client.ConnectHub();
+            await client.ConnectHub();
         }
 
         private void Client_TelemetryUpdate(object sender, KeyValuePair<string, string> e)
         {
             if (onDigitalTwinTelemetryUpdate != null)
             {
+                //Parse the data, extract the Value
+
                 onDigitalTwinTelemetryUpdate(e.Key, e.Value);
             }
         }

@@ -4,15 +4,31 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Producer;
+using Newtonsoft.Json;
 
 namespace dbl.twins.sdk.std
 {
-    
+
+    //For DT Telemetry Patch Events
+    public class PatchOperation
+    {
+        public int value { get; set; }
+        public string path { get; set; }
+        public string op { get; set; }
+    }
+
+    public class RootObject
+    {
+        public string modelId { get; set; }
+        public PatchOperation[] patch { get; set; }
+    }
+
     public class TelemetryEventArgs: EventArgs
     {
         private string source;
@@ -46,8 +62,7 @@ namespace dbl.twins.sdk.std
         public async Task ConnectHub()
         {
             var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
-
-            var consumer = new EventHubConsumerClient(consumerGroup,_connectionString,_eventHubName);
+            var consumer = new EventHubConsumerClient(consumerGroup, _connectionString);
 
             try
             {
@@ -95,7 +110,25 @@ namespace dbl.twins.sdk.std
         private void OnTelemetryUpdate(string subject, string data)
         {
             EventHandler<KeyValuePair<string, string>> handler = TelemetryUpdate;
-            if (null != handler) handler(this, new KeyValuePair<string, string>(subject, data));
+            if (null != handler)
+            {
+                RootObject deserializedObject = JsonConvert.DeserializeObject<RootObject>(data);
+
+                Console.WriteLine("Model ID: " + deserializedObject.modelId);
+                Console.WriteLine("Patch:");
+
+                foreach (PatchOperation operation in deserializedObject.patch)
+                {
+                    //Console.WriteLine("Value: " + operation.value);
+                    //Console.WriteLine("Path: " + operation.path);
+                    //Console.WriteLine("Operation: " + operation.op);
+
+                    handler(this, new KeyValuePair<string, string>(subject, operation.value.ToString()));
+                }
+
+                
+            }
+                
         }
 
 

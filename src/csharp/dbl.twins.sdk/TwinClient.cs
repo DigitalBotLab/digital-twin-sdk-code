@@ -25,19 +25,25 @@ namespace dbl.twins.sdk
         }
     }
 
+    public class TwinPollClient
+    {
+
+
+
+
+    }
+
     /// <summary>
     /// Client that connects to Event Hub to recieve telmetry events
     /// </summary>
-    public class TwinClient
+    public class TwinEHClient
     {
         private string _connectionString;
-        private string _eventHubName;
         public event EventHandler<KeyValuePair<string, string>> TelemetryUpdate;
 
-        public TwinClient(string eventHubConnectionString, string eventHubName)
+        public TwinEHClient(string eventHubConnectionString)
         {
             _connectionString = eventHubConnectionString;
-            _eventHubName = eventHubName;
         }
 
         public async Task ConnectHub()

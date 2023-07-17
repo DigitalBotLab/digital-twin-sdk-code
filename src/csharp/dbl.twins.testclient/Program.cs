@@ -9,7 +9,7 @@ namespace dbl.twins.testclient
     {
         static void Main(string[] args)
         {
-            TwinClient client = new TwinClient("Endpoint=sb://twd-twinns-r5wn.servicebus.windows.net/;SharedAccessKeyName=listenpolicy;SharedAccessKey=cjAnD4wBcR7rMi2slD1znRZBJK6ZW7e/K+AEhKXgp/g=;EntityPath=twd-twinhub-r5wn", "twd-twinhub-r5wn");
+            TwinEHClient client = new TwinEHClient("Endpoint=sb://aaa-twinns-slqs.servicebus.windows.net/;SharedAccessKeyName=listenpolicy;SharedAccessKey=lSJFfCaMenhGNpvuKPuniG3vKKijasPge+AEhCwJhjk=;EntityPath=aaa-twinhub-slqs");
             Task task = client.ConnectHub();
             task.Wait();
             //Console.ReadLine();
