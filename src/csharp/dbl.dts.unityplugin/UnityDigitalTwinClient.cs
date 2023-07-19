@@ -71,7 +71,7 @@ namespace dbl.dts.unityplugin
         async void Start()
         {
             //Read for 24 hours
-            await client.ConnectHub(new CancellationTokenSource(new TimeSpan(24, 0, 0)));
+            await client.ConnectHub();
         }
 
 

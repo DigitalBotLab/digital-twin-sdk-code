@@ -13,7 +13,7 @@ using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Producer;
 using Newtonsoft.Json;
 
-namespace dbl.twins.sdk.std
+namespace dbl.twins.sdk
 {
 
     //For DT Telemetry Patch Events
@@ -24,11 +24,13 @@ namespace dbl.twins.sdk.std
         public string op { get; set; }
     }
 
-    public class RootObject
+    public class JsonOperation
     {
-        public string modelId { get; set; }
-        public PatchOperation[] patch { get; set; }
+        public string op { get; set; }
+        public string path { get; set; }
+        public int value { get; set; }
     }
+
 
     public class ConnectionEventArgs : EventArgs
     {
@@ -96,10 +98,18 @@ namespace dbl.twins.sdk.std
                     string eventBodyString = Encoding.UTF8.GetString(eventBodyBytes);
 
                     string subject = "";
-                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:subject"))
+                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:source"))
                     {
-                        subject = partitionEvent.Data.Properties["cloudEvents:subject"].ToString();
-                        OnTelemetryUpdate(subject, eventBodyString);
+                        subject = partitionEvent.Data.Properties["cloudEvents:source"].ToString();
+
+                        char delimiter = '/';
+                        string[] substrings = subject.Split(delimiter);
+                        if (subject.Contains("thermostat1"))
+                        {
+                            Console.WriteLine("");
+                        }
+
+                        OnTelemetryUpdate(substrings[substrings.Length-1], eventBodyString);
                     }
 
                     Console.WriteLine($"{count} - Read event {subject} : {eventBodyString}");
@@ -146,22 +156,18 @@ namespace dbl.twins.sdk.std
             EventHandler<TelemetryEventArgs> handler = TelemetryUpdate;
             if (null != handler)
             {
-                RootObject deserializedObject = JsonConvert.DeserializeObject<RootObject>(data);
+                data = data.Replace("[", "").Replace("]", "");
 
-                if (deserializedObject.modelId != null)
+                JsonOperation deserializedObject = JsonConvert.DeserializeObject<JsonOperation>(data);
+
+                if (deserializedObject.path != null)
                 {
 
-                    Console.WriteLine("Model ID: " + deserializedObject.modelId);
+                    Console.WriteLine("Model ID: " + deserializedObject.path);
                     Console.WriteLine("Patch:");
 
-                    foreach (PatchOperation operation in deserializedObject.patch)
-                    {
-                        //Console.WriteLine("Value: " + operation.value);
-                        //Console.WriteLine("Path: " + operation.path);
-                        //Console.WriteLine("Operation: " + operation.op);
+                    handler(this, new TelemetryEventArgs(subject, deserializedObject.value.ToString()));
 
-                        handler(this, new TelemetryEventArgs(subject, operation.value.ToString()));
-                    }
                 }
 
             }

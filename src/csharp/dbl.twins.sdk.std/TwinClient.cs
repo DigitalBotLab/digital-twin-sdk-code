@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 namespace dbl.twins.sdk.std
 {
 
+
     //For DT Telemetry Patch Events
     public class PatchOperation
     {
@@ -23,11 +24,13 @@ namespace dbl.twins.sdk.std
         public string op { get; set; }
     }
 
-    public class RootObject
+    public class JsonOperation
     {
-        public string modelId { get; set; }
-        public PatchOperation[] patch { get; set; }
+        public string op { get; set; }
+        public string path { get; set; }
+        public int value { get; set; }
     }
+
 
     public class ConnectionEventArgs : EventArgs
     {
@@ -41,7 +44,7 @@ namespace dbl.twins.sdk.std
         }
     }
 
-    public class TelemetryEventArgs: EventArgs
+    public class TelemetryEventArgs : EventArgs
     {
         public string source;
         public string telemetryData;
@@ -72,12 +75,7 @@ namespace dbl.twins.sdk.std
 
         }
 
-        /// <summary>
-        /// Connect and Read Events with a Cancellation Token Source
-        /// </summary>
-        /// <param name="cancellationSource"></param>
-        /// <returns></returns>
-        public async Task ConnectHub(CancellationTokenSource cancellationSource)
+        public async Task ConnectHub()
         {
             var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
             var consumer = new EventHubConsumerClient(consumerGroup, _connectionString);
@@ -85,6 +83,8 @@ namespace dbl.twins.sdk.std
             try
             {
                 OnConnected(true, "Connected");
+                using CancellationTokenSource cancellationSource = new CancellationTokenSource();
+                //cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
 
                 int eventsRead = 0;
                 int maximumEvents = 30000;
@@ -98,10 +98,18 @@ namespace dbl.twins.sdk.std
                     string eventBodyString = Encoding.UTF8.GetString(eventBodyBytes);
 
                     string subject = "";
-                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:subject"))
+                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:source"))
                     {
-                        subject = partitionEvent.Data.Properties["cloudEvents:subject"].ToString();
-                        OnTelemetryUpdate(subject, eventBodyString);
+                        subject = partitionEvent.Data.Properties["cloudEvents:source"].ToString();
+
+                        char delimiter = '/';
+                        string[] substrings = subject.Split(delimiter);
+                        if (subject.Contains("thermostat1"))
+                        {
+                            Console.WriteLine("");
+                        }
+
+                        OnTelemetryUpdate(substrings[substrings.Length-1], eventBodyString);
                     }
 
                     Console.WriteLine($"{count} - Read event {subject} : {eventBodyString}");
@@ -133,62 +141,6 @@ namespace dbl.twins.sdk.std
             }
         }
 
-        /// <summary>
-        /// Connect and read until a max number of events
-        /// </summary>
-        /// <param name="maxEventCount"></param>
-        /// <returns></returns>
-        public async Task ConnectHub(int maxEventCount)
-        {
-            var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
-            var consumer = new EventHubConsumerClient(consumerGroup, _connectionString);
-
-            try
-            {
-                OnConnected(true, "Connected");
-
-                int eventsRead = 0;
-                int maximumEvents = 30000;
-                int count = 0;
-
-                await foreach (PartitionEvent partitionEvent in consumer.ReadEventsAsync())
-                {
-                    count++;
-                    string readFromPartition = partitionEvent.Partition.PartitionId;
-                    byte[] eventBodyBytes = partitionEvent.Data.EventBody.ToArray();
-                    string eventBodyString = Encoding.UTF8.GetString(eventBodyBytes);
-
-                    string subject = "";
-                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:subject"))
-                    {
-                        subject = partitionEvent.Data.Properties["cloudEvents:subject"].ToString();
-                        OnTelemetryUpdate(subject, eventBodyString);
-                    }
-
-                    Console.WriteLine($"{count} - Read event {subject} : {eventBodyString}");
-
-
-                    eventsRead++;
-
-                    if (eventsRead >= maximumEvents)
-                    {
-                        OnConnected(false, "Maximum Events reached");
-                        break;
-                    }
-                }
-            }
-            catch (System.Exception ex)
-            {
-                OnConnected(false, ex.ToString());
-            }
-            finally
-            {
-                OnConnected(false, "Connection Closed");
-                await consumer.CloseAsync();
-            }
-
-        }
-
         private void OnConnected(bool isConnected, string msg)
         {
             EventHandler<ConnectionEventArgs> handler = Connected;
@@ -204,29 +156,21 @@ namespace dbl.twins.sdk.std
             EventHandler<TelemetryEventArgs> handler = TelemetryUpdate;
             if (null != handler)
             {
-                RootObject deserializedObject = JsonConvert.DeserializeObject<RootObject>(data);
+                data = data.Replace("[", "").Replace("]", "");
 
-                if (deserializedObject.modelId != null)
+                JsonOperation deserializedObject = JsonConvert.DeserializeObject<JsonOperation>(data);
+
+                if (deserializedObject.path != null)
                 {
 
-                    Console.WriteLine("Model ID: " + deserializedObject.modelId);
+                    Console.WriteLine("Model ID: " + deserializedObject.path);
                     Console.WriteLine("Patch:");
 
-                    foreach (PatchOperation operation in deserializedObject.patch)
-                    {
-                        //Console.WriteLine("Value: " + operation.value);
-                        //Console.WriteLine("Path: " + operation.path);
-                        //Console.WriteLine("Operation: " + operation.op);
+                    handler(this, new TelemetryEventArgs(subject, deserializedObject.value.ToString()));
 
-                        handler(this, new TelemetryEventArgs(subject, operation.value.ToString()));
-                    }
                 }
-                
+
             }
-                
         }
-
-
-
     }
 }
