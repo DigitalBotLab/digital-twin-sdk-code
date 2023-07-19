@@ -1,5 +1,7 @@
 # DigitalTwinSDK.com
 
+Welcome to the Digital Twins SDK repo!  
+
 **I. Introduction to Digital Twins**
 
 1. Definition of Digital Twins
