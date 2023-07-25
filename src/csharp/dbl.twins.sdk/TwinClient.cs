@@ -16,20 +16,20 @@ using Newtonsoft.Json;
 namespace dbl.twins.sdk
 {
 
-    //For DT Telemetry Patch Events
-    public class PatchOperation
+    //Room Updates
+    public class RoomPatch
     {
-        public int value { get; set; }
-        public string path { get; set; }
-        public string op { get; set; }
+        public int Value { get; set; }
+        public string Path { get; set; }
+        public string Op { get; set; }
     }
 
-    public class JsonOperation
+    public class RoomModel
     {
-        public string op { get; set; }
-        public string path { get; set; }
-        public int value { get; set; }
+        public string ModelId { get; set; }
+        public RoomPatch[] Patch { get; set; }
     }
+
 
 
     public class ConnectionEventArgs : EventArgs
@@ -98,18 +98,10 @@ namespace dbl.twins.sdk
                     string eventBodyString = Encoding.UTF8.GetString(eventBodyBytes);
 
                     string subject = "";
-                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:source"))
+                    if (partitionEvent.Data.Properties.ContainsKey("cloudEvents:subject"))
                     {
-                        subject = partitionEvent.Data.Properties["cloudEvents:source"].ToString();
-
-                        char delimiter = '/';
-                        string[] substrings = subject.Split(delimiter);
-                        if (subject.Contains("thermostat1"))
-                        {
-                            Console.WriteLine("");
-                        }
-
-                        OnTelemetryUpdate(substrings[substrings.Length-1], eventBodyString);
+                        subject = partitionEvent.Data.Properties["cloudEvents:subject"].ToString();
+                        OnTelemetryUpdate(subject, eventBodyString);
                     }
 
                     Console.WriteLine($"{count} - Read event {subject} : {eventBodyString}");
@@ -156,25 +148,19 @@ namespace dbl.twins.sdk
             EventHandler<TelemetryEventArgs> handler = TelemetryUpdate;
             if (null != handler)
             {
-                data = data.Replace("[", "").Replace("]", "");
+                var roomModel = JsonConvert.DeserializeObject<RoomModel>(data);
 
-                JsonOperation deserializedObject = JsonConvert.DeserializeObject<JsonOperation>(data);
+                Console.WriteLine("Model ID: " + roomModel.ModelId);
 
-                if (deserializedObject.path != null)
+                foreach (var patch in roomModel.Patch)
                 {
+                    Console.WriteLine("Operation: " + patch.Op);
+                    Console.WriteLine("Path: " + patch.Path);
+                    Console.WriteLine("Value: " + patch.Value);
 
-                    Console.WriteLine("Model ID: " + deserializedObject.path);
-                    Console.WriteLine("Patch:");
-
-                    handler(this, new TelemetryEventArgs(subject, deserializedObject.value.ToString()));
-
+                    handler(this, new TelemetryEventArgs(subject, patch.Value.ToString()));
                 }
-
             }
-
         }
-
-
-
     }
 }
