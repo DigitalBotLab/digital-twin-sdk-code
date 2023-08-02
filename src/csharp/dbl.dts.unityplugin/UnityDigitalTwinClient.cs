@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace dbl.dts.unityplugin
@@ -67,10 +68,15 @@ namespace dbl.dts.unityplugin
                 }
             }
         }
-
         async void Start()
         {
-            //Read for 24 hours
+            // Start the Event Hub reading as a Coroutine.
+            await StartEventHubReading();
+        }
+
+        private async Task StartEventHubReading()
+        {
+            // Read for 24 hours asynchronously.
             await client.ConnectHub();
         }
 

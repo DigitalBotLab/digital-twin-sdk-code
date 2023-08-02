@@ -8,10 +8,9 @@ using static dbl.dts.unityplugin.UnityDigitalTwinClient;
 
 namespace dbl.dts.unityplugin
 {
-
     /// <summary>
-    /// Custom property Behaviour IMplemented for Unity 
-    /// Event System! - OBSERVER! - Listens and responds to Telemetry updates
+    /// Custom property Behaviour Implemented for Unity 
+    /// Event System! - OBSERVER! - Listens and responds to Property updates
     /// </summary>
     public class LightColorTemperatureBehaviour : MonoBehaviour, IPropertyBehaviour
     {

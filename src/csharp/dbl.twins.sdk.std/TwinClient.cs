@@ -91,6 +91,7 @@ namespace dbl.twins.sdk.std
 
                 await foreach (PartitionEvent partitionEvent in consumer.ReadEventsAsync(cancellationSource.Token))
                 {
+
                     count++;
                     string readFromPartition = partitionEvent.Partition.PartitionId;
                     byte[] eventBodyBytes = partitionEvent.Data.EventBody.ToArray();
