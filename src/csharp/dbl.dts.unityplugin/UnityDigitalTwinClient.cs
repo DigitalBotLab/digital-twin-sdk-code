@@ -16,8 +16,6 @@ namespace dbl.dts.unityplugin
         private static TwinClient client;
         private static int updateCounter;
 
-        //Endpoint=sb://tnd-twinns-bsta.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=p5wtMNMDI8F/YDsbKiPsrYr6IOReceuVz+AEhLvj5r4=
-
         public string eventHubConnString;
         public LogLevel logLevel;
 

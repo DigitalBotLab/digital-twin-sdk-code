@@ -10,12 +10,13 @@ using UnityEngine;
 
 namespace dbl.dts.unityplugin
 {
+    /// <summary>
+    /// Test Client - Testing IJob Service Interface, not currently working.  Use UnityDigitalTwinClient!
+    /// </summary>
     public class UnityDigitalTwinClientTest : MonoBehaviour
     {
         //Event System! - SUBJECT
         public static UnityDigitalTwinClientTest instance;
-
-        //Endpoint=sb://tnd-twinns-bsta.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=p5wtMNMDI8F/YDsbKiPsrYr6IOReceuVz+AEhLvj5r4=
 
         public string eventHubConnString;
         public LogLevel logLevel;
