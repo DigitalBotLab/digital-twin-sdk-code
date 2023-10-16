@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <ProjectReference Include="..\dbl.twins.sdk.std\dbl.twins.sdk.core.csproj" />
+	  <ProjectReference Include="..\dbl.twins.sdk.core\dbl.twins.sdk.core.csproj" />
   </ItemGroup>
 
 </Project>
