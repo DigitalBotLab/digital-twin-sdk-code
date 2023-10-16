@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dbl.twins.sdk.std
+namespace dbl.twins.sdk.core
 {
         
     public class DigitalTwin

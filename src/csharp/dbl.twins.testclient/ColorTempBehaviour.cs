@@ -1,4 +1,4 @@
-﻿using dbl.twins.sdk;
+﻿using dbl.twins.sdk.core;
 using System.Drawing;
 
 namespace dbl.twins.consumer
@@ -22,12 +22,12 @@ namespace dbl.twins.consumer
             this.telemetryProperty=telemetryProperty;
         }
 
-        public override void TelemetryUpdate(KeyValuePair<string, string> keyValues)
+        public void TelemetryUpdate(KeyValuePair<string, string> keyValues)
         {
             SetProperty(double.Parse(keyValues.Value));
         }
 
-        public override void SetProperty(object updated)
+        public void SetProperty(object updated)
         {
             TempColor = GetColorForTemp((double)updated);
         }

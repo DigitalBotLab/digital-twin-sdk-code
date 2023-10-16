@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading;
@@ -12,7 +13,7 @@ using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Producer;
 using Newtonsoft.Json;
 
-namespace dbl.twins.sdk.core
+namespace dbl.twins.sdk
 {
 
     //Room Updates
@@ -91,7 +92,6 @@ namespace dbl.twins.sdk.core
 
                 await foreach (PartitionEvent partitionEvent in consumer.ReadEventsAsync(cancellationSource.Token))
                 {
-
                     count++;
                     string readFromPartition = partitionEvent.Partition.PartitionId;
                     byte[] eventBodyBytes = partitionEvent.Data.EventBody.ToArray();

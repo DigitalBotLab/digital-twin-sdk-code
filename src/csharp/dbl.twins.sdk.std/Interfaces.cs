@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace dbl.twins.sdk.std
+namespace dbl.twins.sdk.core
 {
 
     /// <summary>

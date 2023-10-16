@@ -1,4 +1,4 @@
-using dbl.twins.sdk;
+using dbl.twins.sdk.core;
 using dbl.twins.consumer;
 
 namespace dbl.twins.test

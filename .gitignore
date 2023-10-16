@@ -29,3 +29,5 @@
 /tests/csharp/dbl.twins.test/bin/Release/net7.0
 /src/csharp/dbl.dts.unityplugin/Properties/PublishProfiles
 /src/csharp/dbl.dts.unityplugin/dbl.dts.unityplugin.csproj.user
+src/csharp/dbl.twins.testclient/bin/Release/net7.0
+
