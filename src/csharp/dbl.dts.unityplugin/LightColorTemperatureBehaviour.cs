@@ -15,8 +15,8 @@ namespace dbl.dts.unityplugin
     public class LightColorTemperatureBehaviour : MonoBehaviour, IPropertyBehaviour
     {
         public UnityEngine.Color tempColor;
-        public string mappedTwin;
-        public Light mappedLight;
+        public string? mappedTwin;
+        public Light? mappedLight;
 
         /// <summary>
         /// Subscribe to Twin Telemetry updates
@@ -55,7 +55,9 @@ namespace dbl.dts.unityplugin
         /// <param name="updated"></param>
         public void SetProperty(object updated)
         {
-            mappedLight.color = (Color)updated;
+            if (mappedLight!=null){
+                mappedLight.color = (Color)updated;
+            }
         }
 
         /// <summary>
@@ -72,7 +74,7 @@ namespace dbl.dts.unityplugin
 
                 try
                 {
-                    if (tempColor != null)
+                    if (tempColor != null && mappedLight!=null)
                     {
                         if ((int)UnityDigitalTwinClient.instance.logLevel < 1)
                         {
