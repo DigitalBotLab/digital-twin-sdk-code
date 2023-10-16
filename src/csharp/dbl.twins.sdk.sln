@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.twins.test", "..\..\tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.twins.testclient", "dbl.twins.testclient\dbl.twins.testclient.csproj", "{3B747066-F2F9-4334-A516-CD7FDA3A3C3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.twins.sdk.core", "dbl.twins.sdk.std\dbl.twins.sdk.core.csproj", "{CA7A05D0-807C-4F82-9FDF-6D8EECEC4C02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.twins.sdk.core", "dbl.twins.sdk.core\dbl.twins.sdk.core.csproj", "{CA7A05D0-807C-4F82-9FDF-6D8EECEC4C02}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dbl.dts.unityplugin", "dbl.dts.unityplugin\dbl.dts.unityplugin.csproj", "{B96A39F4-CD01-4714-8FA6-F63180B3D262}"
 EndProject
