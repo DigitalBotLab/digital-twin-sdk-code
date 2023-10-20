@@ -19,7 +19,7 @@ namespace dbl.twins.sdk.core
             SetPhysics(new object());
         }
 
-        private void SetPhysics(object updated) { }
+        public abstract void SetPhysics(object updated);
 
     }
 
