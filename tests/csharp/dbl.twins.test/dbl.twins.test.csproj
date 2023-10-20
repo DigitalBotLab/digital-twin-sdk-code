@@ -20,7 +20,7 @@
 		  <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.4f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
 	  </Reference>
 	  <ProjectReference Include="..\..\..\src\csharp\dbl.dts.unityplugin\dbl.dts.unityplugin.csproj" />
-    <ProjectReference Include="..\..\..\src\csharp\dbl.twins.sdk\dbl.twins.sdk.csproj" />
+    <ProjectReference Include="..\..\..\src\csharp\dbl.twins.sdk.core\dbl.twins.sdk.core.csproj" />
     <ProjectReference Include="..\..\..\src\csharp\dbl.twins.testclient\dbl.twins.testclient.csproj" />
   </ItemGroup>
 
