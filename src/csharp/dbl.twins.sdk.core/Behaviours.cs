@@ -19,7 +19,7 @@ namespace dbl.twins.sdk.core
             SetPhysics(new object());
         }
 
-        public abstract void SetPhysics(object updated);
+        void SetPhysics(object updated);
 
     }
 
@@ -33,7 +33,7 @@ namespace dbl.twins.sdk.core
             //Telemetry data has changed, update the position
             SetPosition(new object()); 
         }
-        public abstract void SetPosition(object updated);
+        void SetPosition(object updated);
 
     }
 
@@ -47,7 +47,7 @@ namespace dbl.twins.sdk.core
             //Telemetry data has changed, update the position
             TriggerAnimation(new object());
         }
-        public abstract void TriggerAnimation(object updated);
+        void TriggerAnimation(object updated);
 
     }
 
@@ -61,7 +61,7 @@ namespace dbl.twins.sdk.core
             
         }
 
-        public abstract void SetProperty(object updated);
+        void SetProperty(object updated);
     }
 
 }
